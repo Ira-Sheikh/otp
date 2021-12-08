@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: otp-demo
+  namespace: interns-dev
+  
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      bb: web
+  template:
+    metadata:
+      labels:
+        bb: web
+    spec:
+      containers:
+      - name: otp-site
+        image: irasheikh21/otp
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: otp-entrypoint
+  namespace: interns-dev
+spec:
+  type: NodePort
+  selector:
+    bb: web
+  ports:
+  - port: 8083
+    targetPort: 8083
+    nodePort: 30002

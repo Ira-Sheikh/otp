@@ -1,0 +1,26 @@
+_format_version: "2.1"
+_transform: true
+
+services: 
+  - name: otp-service
+    url: http://localhost:8083/api/v1/AddEmail
+    routes: 
+      - name: otp-service-routes
+        paths: 
+          - /api/v1/AddEmail
+        strip_path: true
+  - name: otp-validate
+    url: http://localhost:8083/api/v1/otp-validate
+    routes:
+      - name: otp-validate-routes
+        paths:
+          - /validate1
+        strip_path: true
+  
+#  - name: otp-service
+#    url: https://localhost:8085/validateOtp
+#    routes: 
+#      - name: otp-service-routes
+#        paths: 
+#          - /validateOtp
+#        strip_path: true
